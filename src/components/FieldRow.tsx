@@ -21,9 +21,7 @@ export function FieldRow({
   depth, 
   onUpdate, 
   onDelete, 
-  onAddNested,
-  isFirst = false,
-  isLast = false 
+  onAddNested
 }: FieldRowProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   
@@ -176,8 +174,6 @@ export function FieldRow({
               onUpdate={onUpdate}
               onDelete={onDelete}
               onAddNested={onAddNested}
-              isFirst={index === 0}
-              isLast={index === (field.children?.length || 0) - 1}
             />
           ))}
           {field.children.length === 0 && (
