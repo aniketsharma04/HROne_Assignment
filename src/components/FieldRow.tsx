@@ -166,7 +166,7 @@ export function FieldRow({
       {/* Nested Children */}
       {field.type === 'Nested' && field.children && isExpanded && (
         <div className="mt-3 space-y-3">
-          {field.children.map((child, index) => (
+          {field.children.map((child) => (
             <FieldRow
               key={child.id}
               field={child}
