@@ -57,9 +57,22 @@ export function SchemaBuilder({ schema, onSchemaChange }: SchemaBuilderProps) {
   };
 
   const addNestedField = (parentId: string) => {
+    // Find the parent field to count its children
+    const findParent = (fields: FieldType[]): FieldType | undefined => {
+      for (const field of fields) {
+        if (field.id === parentId) return field;
+        if (field.children) {
+          const found = findParent(field.children);
+          if (found) return found;
+        }
+      }
+      return undefined;
+    };
+    const parent = findParent(schema);
+    const childCount = parent?.children?.length || 0;
     const newField: FieldType = {
       id: generateId(),
-      name: `nested_field`,
+      name: `nested_field${childCount + 1}`,
       type: 'String',
       defaultValue: 'Default String'
     };

@@ -31,8 +31,8 @@ export function FieldRow({
     onUpdate(field.id, { ...field, name });
   };
 
-  const handleTypeChange = (type: 'String' | 'Number' | 'Nested') => {
-    let defaultValue: string | number | undefined;
+  const handleTypeChange = (type: 'String' | 'Number' | 'Nested' | 'ObjectId' | 'Float' | 'Boolean') => {
+    let defaultValue: string | number | boolean | undefined;
     let children: FieldType[] | undefined;
 
     switch (type) {
@@ -42,6 +42,18 @@ export function FieldRow({
         break;
       case 'Number':
         defaultValue = 0;
+        children = undefined;
+        break;
+      case 'ObjectId':
+        defaultValue = 'ObjectId';
+        children = undefined;
+        break;
+      case 'Float':
+        defaultValue = 0.0;
+        children = undefined;
+        break;
+      case 'Boolean':
+        defaultValue = false;
         children = undefined;
         break;
       case 'Nested':
@@ -100,9 +112,12 @@ export function FieldRow({
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="Nested">Nested</SelectItem>
                     <SelectItem value="String">String</SelectItem>
                     <SelectItem value="Number">Number</SelectItem>
-                    <SelectItem value="Nested">Nested</SelectItem>
+                    <SelectItem value="ObjectId">ObjectId</SelectItem>
+                    <SelectItem value="Float">Float</SelectItem>
+                    <SelectItem value="Boolean">Boolean</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

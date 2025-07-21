@@ -16,7 +16,7 @@ export function JsonPreview({ schema }: JsonPreviewProps) {
       if (field.type === 'Nested' && field.children) {
         result[field.name] = convertSchemaToJson(field.children);
       } else {
-        result[field.name] = field.defaultValue;
+        result[field.name] = field.defaultValue ?? '';
       }
     });
     
