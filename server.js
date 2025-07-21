@@ -15,7 +15,10 @@ const PORT = process.env.PORT || 3000;
 // MongoDB Connection
 const MONGODB_URI = 'mongodb+srv://aniket:Aniket2276@cluster0.lfpom4v.mongodb.net/hrone_task?retryWrites=true&w=majority&appName=Cluster0';
 
-mongoose.connect(MONGODB_URI)
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 .then(() => {
   console.log('✅ Connected to MongoDB successfully');
 })
