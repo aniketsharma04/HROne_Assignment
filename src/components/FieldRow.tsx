@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent } from '@/components/ui/card';
 import { Trash2, Plus, ChevronDown, ChevronRight } from 'lucide-react';
 import { FieldType } from '../App';
+import { Switch } from '@/components/ui/switch';
 
 interface FieldRowProps {
   field: FieldType;
@@ -66,6 +67,10 @@ export function FieldRow({
   const handleDefaultValueChange = (value: string) => {
     const defaultValue = field.type === 'Number' ? Number(value) || 0 : value;
     onUpdate(field.id, { ...field, defaultValue });
+  };
+
+  const handleToggleEnabled = (enabled: boolean) => {
+    onUpdate(field.id, { ...field, enabled });
   };
 
   const marginLeft = depth * 24;
@@ -138,7 +143,8 @@ export function FieldRow({
               </div>
 
               {/* Actions */}
-              <div className="col-span-2 flex gap-2 justify-end">
+              <div className="col-span-2 flex gap-2 justify-end items-center">
+                <Switch checked={field.enabled} onCheckedChange={handleToggleEnabled} />
                 {field.type === 'Nested' && (
                   <Button
                     variant="outline"

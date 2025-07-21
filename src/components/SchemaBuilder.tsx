@@ -16,7 +16,8 @@ export function SchemaBuilder({ schema, onSchemaChange }: SchemaBuilderProps) {
       id: generateId(),
       name: `field${schema.length + 1}`,
       type: 'String',
-      defaultValue: 'Default String'
+      defaultValue: 'Default String',
+      enabled: true
     };
     onSchemaChange([...schema, newField]);
   };
@@ -74,7 +75,8 @@ export function SchemaBuilder({ schema, onSchemaChange }: SchemaBuilderProps) {
       id: generateId(),
       name: `nested_field${childCount + 1}`,
       type: 'String',
-      defaultValue: 'Default String'
+      defaultValue: 'Default String',
+      enabled: true
     };
 
     const addNestedFieldRecursive = (fields: FieldType[]): FieldType[] => {

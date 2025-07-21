@@ -13,8 +13,12 @@ export function JsonPreview({ schema }: JsonPreviewProps) {
     const result: Record<string, any> = {};
     
     fields.forEach(field => {
+      if (!field.enabled) return;
       if (field.type === 'Nested' && field.children) {
-        result[field.name] = convertSchemaToJson(field.children);
+        const nested = convertSchemaToJson(field.children);
+        if (Object.keys(nested).length > 0) {
+          result[field.name] = nested;
+        }
       } else {
         result[field.name] = field.defaultValue ?? '';
       }

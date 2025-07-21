@@ -9,6 +9,7 @@ export interface FieldType {
   type: 'String' | 'Number' | 'Nested' | 'ObjectId' | 'Float' | 'Boolean';
   defaultValue?: string | number | boolean;
   children?: FieldType[];
+  enabled: boolean;
 }
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
       id: '1',
       name: 'field1',
       type: 'String',
-      defaultValue: 'Default String'
+      defaultValue: 'Default String',
+      enabled: true
     }
   ]);
 
